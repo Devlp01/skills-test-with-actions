@@ -1,13 +1,24 @@
 name: Name from the download file
 on: workflow_dispatch
 jobs:
+  job_0:
+    name: upload
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Dans l'artifact" > file.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: file
+          path: file.txt
+        
+    
   job_1:
     name: download
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: remark-lint-report
+          name: file
       - run: | 
            echo "hello"
-           cat remark-lint-report.json
+           cat file.txt
