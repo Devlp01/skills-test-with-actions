@@ -1,0 +1,13 @@
+name: Name from the download file
+on: workflow_dispatch
+jobs:    
+  job_1:
+    name: download
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: file
+      - run: | 
+           echo "hello"
+           cat file.txt
